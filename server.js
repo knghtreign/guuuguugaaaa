@@ -4,14 +4,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
-
-// Use port 3000 by default (since Nginx listens on 8080 and proxies to 3000)
-const PORT =
-  process.env.APP_PORT
-    ? Number(process.env.APP_PORT)
-    : process.env.PORT && process.env.PORT !== '8080'
-    ? Number(process.env.PORT)
-    : 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
 app.use(express.static(path.join(__dirname, 'dist')));
 
